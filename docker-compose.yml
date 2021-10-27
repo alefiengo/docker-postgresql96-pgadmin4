@@ -1,0 +1,37 @@
+version: "3.8"
+
+networks:
+  alefiengo-net:
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:9.6
+    restart: always
+    ports:
+      - 5430:5432
+    environment:
+      - POSTGRES_USER=alefiengo
+      - POSTGRES_PASSWORD=alefiengo
+      - POSTGRES_DB=alefiengo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - alefiengo-net
+
+  pgadmin4:
+    container_name: pgadmin4
+    image: dpage/pgadmin4:latest
+    restart: always
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=joalfive@alefiengo.com
+      - PGADMIN_DEFAULT_PASSWORD=Alefiengo123
+    volumes:
+      - ./pgadmin4/servers.json:/pgadmin4/servers.json
+    depends_on:
+      - postgres
+    networks:
+      - alefiengo-net
