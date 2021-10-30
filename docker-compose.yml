@@ -1,37 +1,49 @@
 version: "3.8"
 
 networks:
-  alefiengo-net:
+  dba-net:
+    driver: bridge
 
 services:
   postgres:
-    container_name: postgres
+    container_name: postgres96
     image: postgres:9.6
     restart: always
     ports:
       - 5430:5432
     environment:
       - POSTGRES_USER=alefiengo
-      - POSTGRES_PASSWORD=alefiengo
+      - POSTGRES_PASSWORD=alefiengo123
       - POSTGRES_DB=alefiengo
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - ./data:/var/lib/postgresql/data
     networks:
-      - alefiengo-net
+      - dba-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "alefiengo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-  pgadmin4:
+  pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4:latest
     restart: always
     ports:
       - 5050:80
     environment:
-      - PGADMIN_DEFAULT_EMAIL=joalfive@alefiengo.com
+      - PGADMIN_DEFAULT_EMAIL=jose.fiengo.vega@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=Alefiengo123
     volumes:
       - ./pgadmin4/servers.json:/pgadmin4/servers.json
+      - pgadmin-data:/var/lib/pgadmin
+    links:
+      - postgres
     depends_on:
       - postgres
     networks:
-      - alefiengo-net
+      - dba-net
+
+volumes:
+  pgadmin-data:

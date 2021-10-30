@@ -1,6 +1,5 @@
-# docker-postgresql96-pgadmin4-
+# docker-postgresql96-pgadmin4
 DBA Docker - Postgres 9.6 + Pgadmin4
-
 
 ## Prerrequisitos
 
@@ -24,9 +23,15 @@ docker-compose up -d --build
 ## Explorar
 ### Pasos
 
-1) Desde un navegador, ingresar a la URL `http://localhost:5050/`
+1) Desde un navegador, ingresar a la URL `http://localhost:5050`
 
 2) En el formulario ingresar las siguientes credenciales:
 
-* Correo electrónico / Username: joalfive@alefiengo.com
+* Correo electrónico / Username: jose.fiengo.vega@gmail.com
 * Contraseña: Alefiengo123
+
+![Screenshot](login.png)
+
+3) Posteriormente, en el campo contraseña, ingresar: `alefiengo123`
+
+![Screenshot](password.png)

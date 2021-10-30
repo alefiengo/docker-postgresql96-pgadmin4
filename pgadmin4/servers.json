@@ -1,11 +1,11 @@
 {
     "Servers": {
         "1": {
-            "Name": "Local",
-            "Group": "Docker",
+            "Name": "Alefiengo",
+            "Group": "Docker - Postgres96",
             "Port": 5430,
             "Username": "alefiengo",
-            "Host": "postgres",
+            "Host": "postgres96",
             "SSLMode": "prefer",
             "MaintenanceDB": "alefiengo"
         }
